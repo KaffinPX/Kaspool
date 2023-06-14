@@ -5,12 +5,13 @@ const Output = require('./output')
 const { TransactionOutpoint, ScriptPublicKey } = require("../../kaspa/wasm/kaspa_wasm")
 
 module.exports = class Treasury extends EventEmitter {
-  constructor (kaspa, wallet, database) {
+  constructor (kaspa, wallet, database, config) {
     super()
     
     this.kaspa = kaspa
     this.wallet = wallet
     this.database = database
+    this.config = config
     
     this.database.execute('hash').then(async hash => {
       if (typeof hash === 'undefined') {
@@ -18,7 +19,7 @@ module.exports = class Treasury extends EventEmitter {
         hash = networkInfo.pruningPointHash
       }
 
-      this.listener = new Listener(this.kaspa, hash, 100) // TODO: Depth on config
+      this.listener = new Listener(this.kaspa, hash, this.config.confirmationDepth)
 
       this.listener.on('block', async (block) => await this.checkBlock(block))
       this.listener.on('progress', async (hash) => await this.updateMilestone(hash))

@@ -29,6 +29,9 @@
         }
       }
     },
+    "treasury": {
+      "confirmationDepth": 100
+    },
     "rewarding": {
       "type": "SOLO",
       "policy": {

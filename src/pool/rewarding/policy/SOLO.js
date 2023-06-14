@@ -3,7 +3,7 @@ const { EventEmitter } = require('events')
 module.exports = class Policy extends EventEmitter {
   constructor ({ fee }) {
     super()
-    
+
     this.fee = fee
     this.rewardQueue = []
   }

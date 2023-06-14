@@ -12,7 +12,7 @@ module.exports = class Pool {
 
     this.templates = new Templates(this.kaspa, this.wallet.address, this.config.templates)
     this.stratum = new Stratum(this.templates, this.config.stratum)
-    this.treasury = new Treasury(this.kaspa, this.wallet.address, this.database.open('treasury'))
+    this.treasury = new Treasury(this.kaspa, this.wallet.address, this.database.open('treasury'), this.config.treasury)
     this.rewarding = new Rewarding(this.kaspa, this.wallet, this.database.open('rewarding'), this.config.rewarding)
 
     this.stratum.on('share', (miner, difficulty, isBlock) => this.submitShare(miner, difficulty, isBlock))
