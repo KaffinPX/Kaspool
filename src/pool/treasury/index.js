@@ -1,7 +1,7 @@
 const { EventEmitter } = require('events')
 const Listener = require('./listener')
 
-const Fund = require('./fund')
+const Output = require('./output')
 const { TransactionOutpoint, ScriptPublicKey } = require("../../kaspa/wasm/kaspa_wasm")
 
 module.exports = class Treasury extends EventEmitter {
@@ -34,7 +34,7 @@ module.exports = class Treasury extends EventEmitter {
     const minerReward = minerTransaction.outputs[0]
 
     if (minerReward.verboseData.scriptPublicKeyAddress === this.wallet.address) {
-      const fund = new Fund(
+      const output = new Output(
         minerReward.verboseData.scriptPublicKeyAddress,
         new TransactionOutpoint(minerTransaction.header.hash, 0),
         minerReward.amount,
@@ -42,7 +42,7 @@ module.exports = class Treasury extends EventEmitter {
         true
       )
 
-      this.emit('fund', fund)
+      this.emit('output', output)
     }
   }
 
