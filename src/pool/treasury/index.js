@@ -29,6 +29,12 @@ module.exports = class Treasury extends EventEmitter {
     })
   }
 
+  async submitBlock (template, nonce) {
+    template.header.nonce = nonce
+
+    await this.kaspa.submitBlock(template)
+  }
+
   async checkBlock (block) {
     const minerTransaction = block.transactions[0]
     const minerReward = minerTransaction.outputs[0]

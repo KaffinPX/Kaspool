@@ -14,21 +14,10 @@ module.exports = class Pool {
     this.stratum = new Stratum(this.templates, this.config.stratum)
     this.treasury = new Treasury(this.kaspa, this.wallet.address, this.database.open('treasury'), this.config.treasury)
     this.rewarding = new Rewarding(this.kaspa, this.wallet, this.database.open('rewarding'), this.config.rewarding)
-
+    // TODO: Decide await or no
     this.stratum.on('share', (miner, difficulty, isBlock) => this.rewarding.addShare(miner, difficulty, isBlock))
-    this.stratum.on('block', (hash, nonce) => this.submitBlock(hash, nonce))
+    this.stratum.on('block', (hash, nonce) => this.treasury.submitBlock(this.templates.get(hash), nonce))
 
     this.treasury.on('output', (output) => { this.rewarding.distribute(output) })
-  }
-
-  async submitShare (miner, difficulty, isBlock) {
-    this.rewarding.addShare(miner, difficulty, isBlock)
-  }
-
-  async submitBlock (hash, nonce) { // TODO: Move to treasury, just an useless detail rn
-    const block = this.templates.get(hash)
-    block.header.nonce = nonce
-
-    await this.kaspa.submitBlock(block)
   }
 }
