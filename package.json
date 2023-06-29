@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "colors": "^1.4.0",
     "isomorphic-ws": "^5.0.0",
     "lmdb": "^2.7.11",
     "when-json-met-bigint": "^0.27.0"

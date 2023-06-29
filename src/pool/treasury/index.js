@@ -16,6 +16,7 @@ module.exports = class Treasury extends EventEmitter {
     this.database.execute('hash').then(async hash => {
       if (typeof hash === 'undefined') {
         const networkInfo = await this.kaspa.getBlockDagInfo()
+        
         hash = networkInfo.pruningPointHash
       }
 

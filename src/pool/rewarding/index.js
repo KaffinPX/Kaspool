@@ -7,7 +7,7 @@ module.exports = class Rewarding {
     this.database = database
     this.policy = new (require(`./policy/${config.type}`))(config.policy)
 
-    // TODO: snapshot policy to database 
+    this.policy.on('snapshot', (data) => {}) // TODO: snapshot policy to database 
   }
 
   async addShare (difficulty, miner, isBlock) {

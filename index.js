@@ -4,6 +4,7 @@ const Pool = require('./src/pool')
 
 const Database = require(`./src/services/database`)
 const RPC = require('./src/services/rpc')
+const Logger = require('./src/services/logger')
 
 const config = require('./config.json')
 
@@ -13,7 +14,8 @@ const kaspa = new Kaspa(config.kaspa.nodeAddress, () => {
   const wallet = new Wallet(kaspa.networkType, config.kaspa.wallet.mnemonics, () => {
     const pool = new Pool(kaspa, wallet, database, config.pool)
     const rpc = new RPC(config.services.RPC.port, pool)
+    const logger = new Logger()
 
-    console.log('Pool is active!')
+    logger.log('Pool is active!')
   })
 })
