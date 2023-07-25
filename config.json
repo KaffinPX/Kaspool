@@ -5,6 +5,12 @@
       "mnemonics": "humor radar prosper shallow scene zebra desk caution permit sorry slim huge surge steak section cool jeans hour amused ecology exist uncle elevator honey"
     }
   },
+  "database": {
+    "type": "lmdb",
+    "provider": {
+      "path": "./storage/pool.db"
+    }
+  },
   "pool": {
     "templates": {
       "generation": {
@@ -42,12 +48,6 @@
   "services": {
     "RPC": {
       "port": 8080
-    },
-    "database": {
-      "type": "lmdb",
-      "provider": {
-        "path": "./storage/pool.db"
-      }
     }
   }
 }
