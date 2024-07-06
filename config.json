@@ -1,53 +1,15 @@
 {
-  "kaspa": {
-    "nodeAddress": "ws://127.0.0.1:17110",
-    "wallet": {
-      "mnemonics": "humor radar prosper shallow scene zebra desk caution permit sorry slim huge surge steak section cool jeans hour amused ecology exist uncle elevator honey"
-    }
-  },
-  "database": {
-    "type": "lmdb",
-    "provider": {
-      "path": "./storage/pool.db"
-    }
-  },
-  "pool": {
+  "node": "",
+  "stratum": {
+    "port": 7777,
     "templates": {
-      "generation": {
-        "type": "RPC",
-        "description": "Mined via pool.kaspa"
-      },
-      "cacheSize": 100
+      "cacheSize": 300
     },
-    "stratum": {
-      "port": 16112,
-      "listeningAddress": "127.0.0.1",
-      "maxConnectionsPerIP": 250,
-      "worker": {
-        "maxNameLength": 40,
-        "maxMessageLength": 128,
-        "keepAliveTimeout": 20000,
-        "difficulty": {
-          "type": "static",
-          "policy": {
-            "difficulty": 0.005
-          }
-        }
-      }
-    },
-    "treasury": {
-      "confirmationDepth": 100
-    },
-    "rewarding": {
-      "type": "SOLO",
-      "policy": {
-        "fee": 1
-      }
-    }
+    "difficulty": 1
+
   },
-  "services": {
-    "RPC": {
-      "port": 8080
-    }
+  "treasury": {
+    "privateKey": "",
+    "fee": 1
   }
 }

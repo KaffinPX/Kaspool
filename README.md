@@ -1,13 +1,15 @@
-# Kaspool ⛏️
-### A Kaspa pool using rusty-kaspa for performance and reliability.
+# ghostpool
 
-## Features
-* Light, uses WASM bindings(fast as native code!) for heavy tasks.
-* Extendable, modular design.
-* Supports multiple networks(Testnet, mainnet...).
-* Built with in-progress modern RPC api.
+To install dependencies:
 
-## Usage
-Install NodeJS from [here](https://nodejs.org/) and install modules by ``npm install`` and just run using ``node index.js`` after configuration or just use a prehosted instance.
+```bash
+bun install
+```
 
-**Experimental(Use it with caution), development goes parallel with rusty-kaspa.**
+To run:
+
+```bash
+bun run index.ts
+```
+
+This project was created using `bun init` in bun v1.0.31. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
