@@ -1,18 +1,19 @@
 export default class Jobs {
   private jobs: Map<string, string> = new Map()
-  private lastId = 0
 
   getHash (id: string) {
    return this.jobs.get(id)
   }
 
-  deriveId (hash: string) {
-    const id = this.lastId == 99 ? 1 : (this.lastId + 1)
+  deriveId (hash: string): string {
+    const id = crypto.getRandomValues(Buffer.alloc(2)).toString('hex')
 
-    this.jobs.set(id.toString(), hash)
-    this.lastId = id
+    if (this.jobs.has(id)) {
+      return this.deriveId(hash)
+    }
 
-    return id.toString()
+    this.jobs.set(id, hash)
+    return id
   }
 
   expireNext () {
